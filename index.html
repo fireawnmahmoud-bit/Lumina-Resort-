@@ -1,0 +1,2770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Red Sea Resort — Gastronomy Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-ocean: #0a1628;
+            --ocean-mid: #0d1f3c;
+            --ocean-light: #1a3a5c;
+            --cyan: #00d4ff;
+            --cyan-soft: rgba(0, 212, 255, 0.15);
+            --cyan-glow: rgba(0, 212, 255, 0.4);
+            --gold: #c9a96e;
+            --gold-light: #e8d5a3;
+            --gold-dark: #a08450;
+            --cream: #f5f0e8;
+            --white: #ffffff;
+            --text-light: #e8e4dc;
+            --text-muted: #8899aa;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--deep-ocean);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .bg-ocean {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(201, 169, 110, 0.06) 0%, transparent 50%),
+                linear-gradient(180deg, var(--deep-ocean) 0%, var(--ocean-mid) 50%, var(--ocean-light) 100%);
+        }
+        .bg-ocean::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300d4ff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        .particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: var(--cyan);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-particle 8s infinite ease-in-out;
+        }
+        @keyframes float-particle {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(0); }
+            20% { opacity: 0.6; transform: translateY(-20px) scale(1); }
+            80% { opacity: 0.3; transform: translateY(-100px) scale(0.5); }
+        }
+        .header {
+            position: relative;
+            z-index: 10;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .logo-icon {
+            width: 60px; height: 60px;
+            position: relative;
+        }
+        .logo-icon svg {
+            width: 100%; height: 100%;
+            filter: drop-shadow(0 0 20px var(--cyan-glow));
+        }
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .logo-text .subtitle {
+            font-size: 0.85rem;
+            color: var(--cyan);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+        .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1.5rem 1rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 10;
+            background: rgba(10, 22, 40, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .nav-tab {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--glass-border);
+            background: var(--glass);
+            color: var(--text-muted);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, var(--cyan-soft), transparent);
+            transition: left 0.5s ease;
+        }
+        .nav-tab:hover::before { left: 100%; }
+        .nav-tab:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            box-shadow: 0 0 20px var(--cyan-glow);
+            transform: translateY(-2px);
+        }
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--cyan-soft), transparent);
+            border-color: var(--cyan);
+            color: var(--cyan);
+            box-shadow: 0 0 30px var(--cyan-glow), inset 0 0 20px var(--cyan-soft);
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 5;
+        }
+        .venue-section {
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .venue-section.active { display: block; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .venue-header {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(201, 169, 110, 0.05));
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .venue-header::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, var(--cyan-glow) 0%, transparent 70%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .venue-header::after {
+            content: '';
+            position: absolute;
+            bottom: -50%; left: -20%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(201, 169, 110, 0.3) 0%, transparent 70%);
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        .venue-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .venue-header .venue-type {
+            color: var(--cyan);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .venue-header .venue-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+        }
+        .venue-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .meta-item .icon {
+            width: 20px; height: 20px;
+            color: var(--cyan);
+        }
+        .category-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+            background: var(--glass);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+        .category-tab {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .category-tab:hover {
+            color: var(--cyan);
+            background: var(--cyan-soft);
+        }
+        .category-tab.active {
+            background: linear-gradient(135deg, var(--cyan), var(--ocean-light));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .menu-item {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 0;
+            background: linear-gradient(180deg, var(--cyan), var(--gold));
+            transition: height 0.4s ease;
+        }
+        .menu-item:hover::before { height: 100%; }
+        .menu-item:hover {
+            border-color: var(--cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.15), 0 0 60px rgba(0, 212, 255, 0.05);
+        }
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        .menu-item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            font-weight: 500;
+            flex: 1;
+        }
+        .menu-item-price {
+            font-size: 1.2rem;
+            color: var(--cyan);
+            font-weight: 700;
+            white-space: nowrap;
+            margin-left: 1rem;
+        }
+        .menu-item-price span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .menu-item-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .menu-item-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .tag.veg { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .tag.spicy { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .tag.chef { background: rgba(201, 169, 110, 0.2); color: var(--gold); border: 1px solid rgba(201, 169, 110, 0.3); }
+        .tag.new { background: rgba(0, 212, 255, 0.2); color: var(--cyan); border: 1px solid rgba(0, 212, 255, 0.3); }
+        .tag.popular { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .menu-category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--cyan);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .menu-category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--glass-border), transparent);
+        }
+        .special-offer {
+            background: linear-gradient(135deg, rgba(201, 169, 110, 0.15), rgba(0, 212, 255, 0.1));
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .special-offer::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(201, 169, 110, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .special-offer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .special-offer p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .offer-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--deep-ocean);
+            font-weight: 700;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 5;
+        }
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .footer .brand {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .search-bar {
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--text-light);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .search-bar input:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px var(--cyan-glow);
+        }
+        .search-bar input::placeholder { color: var(--text-muted); }
+        .search-bar svg {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--cyan);
+            width: 20px; height: 20px;
+        }
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        .no-results svg {
+            width: 60px; height: 60px;
+            color: var(--cyan);
+            opacity: 0.5;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .logo-text h1 { font-size: 1.5rem; }
+            .venue-header h2 { font-size: 1.8rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .nav-tab { padding: 0.6rem 1rem; font-size: 0.8rem; }
+            .category-tab { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+        }
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px; height: 50px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            color: var(--cyan);
+            backdrop-filter: blur(10px);
+        }
+        .scroll-indicator:hover {
+            background: var(--cyan-soft);
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px var(--cyan-glow);
+            transform: translateY(-3px);
+        }
+        .add-btn {
+            background: linear-gradient(135deg, var(--cyan), var(--ocean-light));
+            border: none;
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+        .add-btn:hover {
+            box-shadow: 0 0 15px var(--cyan-glow);
+            transform: scale(1.05);
+        }
+        .add-btn.added {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+        }
+        .cart-summary {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: var(--glass);
+            border: 1px solid var(--cyan);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            display: none;
+            animation: slideInLeft 0.3s ease;
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .cart-summary.show { display: block; }
+        .cart-summary h4 {
+            color: var(--cyan);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+        .cart-summary .cart-count {
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-ocean"></div>
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" stroke="url(#grad1)" stroke-width="2" fill="none"/>
+                    <path d="M30 50 Q40 30 50 50 Q60 70 70 50" stroke="url(#grad1)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <circle cx="50" cy="50" r="8" fill="url(#grad1)"/>
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d4ff"/>
+                            <stop offset="100%" style="stop-color:#c9a96e"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="logo-text">
+                <h1>Lumina</h1>
+                <div class="subtitle">Red Sea Resort</div>
+            </div>
+        </div>
+        <p class="tagline">One Sea, One Soul, One Family</p>
+    </header>
+
+    <nav class="nav-tabs">
+        <button class="nav-tab active" data-venue="cyan">Cyan Restaurant</button>
+        <button class="nav-tab" data-venue="lascala">La Scala</button>
+        <button class="nav-tab" data-venue="lotus">Lotus Restaurant</button>
+        <button class="nav-tab" data-venue="liquid">Liquid Crystal</button>
+        <button class="nav-tab" data-venue="bars">Bars & Lounges</button>
+        <button class="nav-tab" data-venue="cafes">Cafes</button>
+    </nav>
+
+    <main class="main-content">
+        <div class="search-bar">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Search dishes, ingredients, or prices...">
+        </div>
+
+        <!-- CYAN RESTAURANT -->
+        <section class="venue-section active" id="cyan">
+            <div class="venue-header">
+                <div class="venue-type">International &middot; Mediterranean &middot; All-Day Dining</div>
+                <h2>Cyan Restaurant</h2>
+                <p class="venue-desc">An international all-day dining restaurant serving global cuisines in a modern and elegant atmosphere. Four cultures, one table, a world of flavor.</p>
+                <div class="venue-meta">
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        24 Hours
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        353 Seats
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Japanese, French, Turkish, American
+                    </div>
+                </div>
+            </div>
+
+            <div class="special-offer">
+                <div class="offer-badge">Chef's Special Package</div>
+                <h3>American Package</h3>
+                <p>Complete dining experience with breakfast, lunch, and dinner</p>
+                <div class="menu-grid" style="margin-top:1rem">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Breakfast Package</span>
+                            <span class="menu-item-price">333 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Egg + Beef Bacon + Hash Brown + Pancakes</div>
+                        <div class="menu-item-tags"><span class="tag chef">Chef's Choice</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 333)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lunch Package</span>
+                            <span class="menu-item-price">523 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Tomato Soup + Cream Mashed Potato + Beef Burger + Caesar Salad + Cheesecake</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 523)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Dinner Package</span>
+                            <span class="menu-item-price">315 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Potato Cheese Soup + Mac & Cheese + Chicken Roast + Chocolate Cake</div>
+                        <div class="menu-item-tags"><span class="tag chef">Chef's Choice</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 315)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-tabs">
+                <button class="category-tab active" data-cat="breakfast">Breakfast</button>
+                <button class="category-tab" data-cat="lunch">Lunch</button>
+                <button class="category-tab" data-cat="dinner">Dinner</button>
+                <button class="category-tab" data-cat="japanese">Japanese</button>
+                <button class="category-tab" data-cat="french">French</button>
+                <button class="category-tab" data-cat="turkish">Turkish</button>
+            </div>
+
+            <div class="menu-category" data-cat="breakfast" style="display:block">
+                <div class="menu-category-title">Breakfast Selection</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Classic Continental</span>
+                            <span class="menu-item-price">185 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Fresh pastries, seasonal fruits, yogurt, and granola</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 185)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Full English Breakfast</span>
+                            <span class="menu-item-price">275 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Eggs, bacon, sausage, baked beans, grilled tomato, mushrooms, and toast</div>
+                        <button class="add-btn" onclick="addToCart(this, 275)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Shakshuka</span>
+                            <span class="menu-item-price">195 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Poached eggs in spiced tomato sauce with peppers, onions, and fresh herbs</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 195)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Eggs Benedict</span>
+                            <span class="menu-item-price">245 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Poached eggs, Canadian bacon, hollandaise sauce on English muffin</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 245)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Avocado Toast</span>
+                            <span class="menu-item-price">165 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Smashed avocado, poached egg, cherry tomatoes, microgreens on sourdough</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 165)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Red Sea Smoothie Bowl</span>
+                            <span class="menu-item-price">155 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Acai blend, fresh berries, coconut flakes, chia seeds, and honey</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 155)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="lunch" style="display:none">
+                <div class="menu-category-title">Lunch Selection</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Grilled Sea Bass</span>
+                            <span class="menu-item-price">385 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Fresh Red Sea bass, lemon butter sauce, seasonal vegetables, herb rice</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 385)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Mediterranean Salad</span>
+                            <span class="menu-item-price">175 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Mixed greens, feta, olives, cucumber, cherry tomatoes, red onion, oregano dressing</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 175)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chicken Shawarma Wrap</span>
+                            <span class="menu-item-price">165 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Marinated chicken, tahini, pickles, lettuce, tomato in warm pita</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 165)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Truffle Mushroom Risotto</span>
+                            <span class="menu-item-price">295 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Arborio rice, wild mushrooms, truffle oil, parmesan, fresh herbs</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag chef">Chef's Choice</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 295)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Beef Burger</span>
+                            <span class="menu-item-price">225 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Premium beef patty, cheddar, caramelized onions, brioche bun, truffle fries</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 225)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lobster Roll</span>
+                            <span class="menu-item-price">455 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Fresh lobster, lemon mayo, celery, chives, toasted brioche roll</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 455)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="dinner" style="display:none">
+                <div class="menu-category-title">Dinner Selection</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Wagyu Beef Steak</span>
+                            <span class="menu-item-price">685 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">A5 Wagyu, truffle mashed potato, asparagus, red wine reduction</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 685)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Pan-Seared Duck Breast</span>
+                            <span class="menu-item-price">425 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Duck breast, orange glaze, roasted root vegetables, wild rice</div>
+                        <button class="add-btn" onclick="addToCart(this, 425)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Red Sea Seafood Platter</span>
+                            <span class="menu-item-price">595 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Grilled prawns, calamari, sea bass, mussels, garlic butter, lemon</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 595)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Vegetable Wellington</span>
+                            <span class="menu-item-price">315 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Spinach, mushroom, goat cheese, puff pastry, tomato coulis</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 315)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lamb Rack</span>
+                            <span class="menu-item-price">525 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Herb-crusted lamb, mint jus, fondant potatoes, seasonal greens</div>
+                        <button class="add-btn" onclick="addToCart(this, 525)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chocolate Fondant</span>
+                            <span class="menu-item-price">145 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Molten chocolate cake, vanilla ice cream, raspberry coulis</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 145)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="japanese" style="display:none">
+                <div class="menu-category-title">Japanese Cuisine</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Sashimi Platter</span>
+                            <span class="menu-item-price">485 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Fresh tuna, salmon, yellowtail, sea bream, wasabi, pickled ginger</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 485)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Dragon Roll</span>
+                            <span class="menu-item-price">295 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Eel, avocado, cucumber, tobiko, unagi sauce</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 295)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Wagyu Nigiri</span>
+                            <span class="menu-item-price">365 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">A5 Wagyu beef, sushi rice, truffle oil, microgreens</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 365)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Tempura Udon</span>
+                            <span class="menu-item-price">215 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Thick wheat noodles, crispy shrimp tempura, dashi broth, green onions</div>
+                        <button class="add-btn" onclick="addToCart(this, 215)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Miso Black Cod</span>
+                            <span class="menu-item-price">455 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Miso-marinated black cod, pickled ginger, bok choy</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 455)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Matcha Tiramisu</span>
+                            <span class="menu-item-price">135 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Green tea mascarpone, ladyfingers, white chocolate shavings</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 135)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="french" style="display:none">
+                <div class="menu-category-title">French Cuisine</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Coq au Vin</span>
+                            <span class="menu-item-price">345 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Braised chicken, red wine, mushrooms, pearl onions, bacon, herbs</div>
+                        <button class="add-btn" onclick="addToCart(this, 345)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Bouillabaisse</span>
+                            <span class="menu-item-price">425 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Traditional Provencal fish stew, saffron, rouille, crusty bread</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 425)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Duck Confit</span>
+                            <span class="menu-item-price">385 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Slow-cooked duck leg, crispy skin, potato gratin, cherry sauce</div>
+                        <button class="add-btn" onclick="addToCart(this, 385)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Ratatouille</span>
+                            <span class="menu-item-price">195 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Layered vegetables, tomato sauce, herbs, goat cheese</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 195)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Creme Brulee</span>
+                            <span class="menu-item-price">125 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Vanilla custard, caramelized sugar crust, fresh berries</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 125)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Tarte Tatin</span>
+                            <span class="menu-item-price">145 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Caramelized apple tart, puff pastry, vanilla ice cream</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 145)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="turkish" style="display:none">
+                <div class="menu-category-title">Turkish Cuisine</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Iskender Kebab</span>
+                            <span class="menu-item-price">285 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Thinly sliced lamb, tomato sauce, butter, yogurt, pita bread</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 285)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Meze Platter</span>
+                            <span class="menu-item-price">225 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Hummus, baba ganoush, tabbouleh, dolma, olives, warm bread</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 225)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lahmacun</span>
+                            <span class="menu-item-price">165 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Thin crispy dough, spiced minced lamb, tomatoes, parsley, lemon</div>
+                        <button class="add-btn" onclick="addToCart(this, 165)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Manti</span>
+                            <span class="menu-item-price">215 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Turkish dumplings, spiced beef, yogurt, garlic, sumac butter</div>
+                        <button class="add-btn" onclick="addToCart(this, 215)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Baklava</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Layered filo pastry, pistachios, honey syrup, Turkish coffee</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Turkish Delight</span>
+                            <span class="menu-item-price">75 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Assorted lokum, rose, pistachio, lemon flavors</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 75)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LA SCALA -->
+        <section class="venue-section" id="lascala">
+            <div class="venue-header">
+                <div class="venue-type">Italian Specialties &middot; Fine Dining</div>
+                <h2>La Scala</h2>
+                <p class="venue-desc">A sophisticated Italian dining experience featuring authentic Italian flavors, handmade pasta, and fine dining in an elegant atmosphere.</p>
+                <div class="venue-meta">
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        6PM - 11PM
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        80 Seats
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Authentic Italian
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-tabs">
+                <button class="category-tab active" data-cat="antipasti">Antipasti</button>
+                <button class="category-tab" data-cat="pasta">Pasta</button>
+                <button class="category-tab" data-cat="pizza">Pizza</button>
+                <button class="category-tab" data-cat="secondi">Secondi</button>
+                <button class="category-tab" data-cat="dolci">Dolci</button>
+            </div>
+
+            <div class="menu-category" data-cat="antipasti" style="display:block">
+                <div class="menu-category-title">Antipasti</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Burrata e Pomodoro</span>
+                            <span class="menu-item-price">245 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Fresh burrata, heirloom tomatoes, basil oil, aged balsamic, sea salt</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 245)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Carpaccio di Manzo</span>
+                            <span class="menu-item-price">295 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Thinly sliced beef tenderloin, arugula, parmesan, truffle oil, capers</div>
+                        <button class="add-btn" onclick="addToCart(this, 295)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Arancini Siciliani</span>
+                            <span class="menu-item-price">175 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Crispy risotto balls, mozzarella center, marinara sauce, basil</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 175)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Antipasto Misto</span>
+                            <span class="menu-item-price">325 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Selection of cured meats, cheeses, olives, grilled vegetables, bread</div>
+                        <div class="menu-item-tags"><span class="tag chef">For Sharing</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 325)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Vitello Tonnato</span>
+                            <span class="menu-item-price">275 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Thinly sliced veal, tuna sauce, capers, lemon zest</div>
+                        <button class="add-btn" onclick="addToCart(this, 275)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Bruschetta Trio</span>
+                            <span class="menu-item-price">165 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Tomato & basil, mushroom & truffle, ricotta & honey</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 165)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="pasta" style="display:none">
+                <div class="menu-category-title">Pasta Fresca</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Tagliatelle al Tartufo</span>
+                            <span class="menu-item-price">385 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Fresh tagliatelle, black truffle, butter, parmesan, white wine</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 385)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Linguine alle Vongole</span>
+                            <span class="menu-item-price">325 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Fresh clams, garlic, white wine, chili, parsley, extra virgin olive oil</div>
+                        <button class="add-btn" onclick="addToCart(this, 325)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Risotto ai Frutti di Mare</span>
+                            <span class="menu-item-price">365 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Arborio rice, mixed seafood, saffron, tomato, white wine</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 365)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Pappardelle al Cinghiale</span>
+                            <span class="menu-item-price">345 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Wide ribbon pasta, wild boar ragu, red wine, rosemary, pecorino</div>
+                        <button class="add-btn" onclick="addToCart(this, 345)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Gnocchi al Gorgonzola</span>
+                            <span class="menu-item-price">285 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Homemade potato gnocchi, gorgonzola cream, walnuts, pear</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 285)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Spaghetti Carbonara</span>
+                            <span class="menu-item-price">265 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Guanciale, egg yolk, pecorino romano, black pepper</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 265)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="pizza" style="display:none">
+                <div class="menu-category-title">Pizza Napoletana</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Margherita DOP</span>
+                            <span class="menu-item-price">185 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">San Marzano tomatoes, buffalo mozzarella, fresh basil, olive oil</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 185)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Quattro Formaggi</span>
+                            <span class="menu-item-price">245 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Mozzarella, gorgonzola, parmesan, fontina, honey drizzle</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 245)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Diavola</span>
+                            <span class="menu-item-price">225 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Spicy salami, mozzarella, chili flakes, roasted peppers</div>
+                        <div class="menu-item-tags"><span class="tag spicy">Spicy</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 225)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Tartufo e Porcini</span>
+                            <span class="menu-item-price">325 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Black truffle cream, porcini mushrooms, mozzarella, arugula</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 325)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Prosciutto e Rucola</span>
+                            <span class="menu-item-price">265 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Parma ham, arugula, parmesan shavings, cherry tomatoes</div>
+                        <button class="add-btn" onclick="addToCart(this, 265)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Pizza del Mare</span>
+                            <span class="menu-item-price">295 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Prawns, calamari, mussels, garlic, chili, parsley, lemon zest</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 295)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="secondi" style="display:none">
+                <div class="menu-category-title">Secondi Piatti</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Osso Buco alla Milanese</span>
+                            <span class="menu-item-price">425 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Braised veal shank, gremolata, saffron risotto</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 425)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Branzino al Sale</span>
+                            <span class="menu-item-price">395 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Whole sea bass baked in salt crust, lemon, herbs, olive oil</div>
+                        <button class="add-btn" onclick="addToCart(this, 395)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Bistecca alla Fiorentina</span>
+                            <span class="menu-item-price">685 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">T-bone steak, grilled vegetables, rosemary potatoes, red wine</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 685)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Saltimbocca alla Romana</span>
+                            <span class="menu-item-price">345 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Veal escalopes, prosciutto, sage, white wine, butter</div>
+                        <button class="add-btn" onclick="addToCart(this, 345)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Pollo al Limone</span>
+                            <span class="menu-item-price">285 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Chicken breast, lemon sauce, capers, asparagus, herb potatoes</div>
+                        <button class="add-btn" onclick="addToCart(this, 285)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Agnello Scottadito</span>
+                            <span class="menu-item-price">425 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Grilled lamb chops, rosemary, garlic, mint sauce, roasted vegetables</div>
+                        <button class="add-btn" onclick="addToCart(this, 425)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="dolci" style="display:none">
+                <div class="menu-category-title">Dolci</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Tiramisu Classico</span>
+                            <span class="menu-item-price">145 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Mascarpone, espresso-soaked ladyfingers, cocoa powder</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 145)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Panna Cotta</span>
+                            <span class="menu-item-price">125 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Vanilla cream, berry coulis, fresh mint</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 125)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Cannoli Siciliani</span>
+                            <span class="menu-item-price">115 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Crispy pastry tubes, ricotta filling, pistachios, chocolate chips</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 115)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Gelato Selection</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Three scoops of artisanal gelato, seasonal flavors</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Zeppole di San Giuseppe</span>
+                            <span class="menu-item-price">135 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Italian doughnuts, ricotta cream, amarena cherries</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 135)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Affogato al Caffe</span>
+                            <span class="menu-item-price">105 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Vanilla gelato drowned in hot espresso, amaretto biscuit</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 105)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOTUS RESTAURANT -->
+        <section class="venue-section" id="lotus">
+            <div class="venue-header">
+                <div class="venue-type">Egyptian &middot; Middle Eastern &middot; Authentic</div>
+                <h2>Lotus Restaurant</h2>
+                <p class="venue-desc">Authentic Egyptian and Middle Eastern cuisine celebrating local flavors, traditional recipes, and the rich culinary heritage of the Nile Valley.</p>
+                <div class="venue-meta">
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        12PM - 11PM
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        133 Seats
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Egyptian & Middle Eastern
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-tabs">
+                <button class="category-tab active" data-cat="mezze">Mezze</button>
+                <button class="category-tab" data-cat="grills">Grills</button>
+                <button class="category-tab" data-cat="tagines">Tagines</button>
+                <button class="category-tab" data-cat="seafood">Seafood</button>
+                <button class="category-tab" data-cat="desserts">Desserts</button>
+            </div>
+
+            <div class="menu-category" data-cat="mezze" style="display:block">
+                <div class="menu-category-title">Mezze & Starters</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Hummus Beiruti</span>
+                            <span class="menu-item-price">85 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Chickpea puree, tahini, lemon, garlic, olive oil, parsley</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 85)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Baba Ganoush</span>
+                            <span class="menu-item-price">75 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Smoky eggplant, tahini, garlic, lemon, pomegranate molasses</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 75)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Falafel Platter</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Crispy chickpea fritters, tahini sauce, pickles, warm pita</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Kibbeh Nayyeh</span>
+                            <span class="menu-item-price">145 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Raw minced lamb, bulgur, spices, mint, olive oil</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 145)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Warak Enab</span>
+                            <span class="menu-item-price">115 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Stuffed vine leaves, rice, herbs, lemon, olive oil</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 115)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Mixed Mezze Platter</span>
+                            <span class="menu-item-price">225 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Hummus, baba ganoush, tabbouleh, falafel, kibbeh, warm bread</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag chef">For Sharing</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 225)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="grills" style="display:none">
+                <div class="menu-category-title">Grills & Kebabs</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Mixed Grill Platter</span>
+                            <span class="menu-item-price">425 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Lamb chops, chicken kebab, kofta, shish tawook, grilled vegetables, rice</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 425)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Shish Tawook</span>
+                            <span class="menu-item-price">195 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Marinated chicken skewers, garlic sauce, grilled peppers, rice</div>
+                        <button class="add-btn" onclick="addToCart(this, 195)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Kofta Kebab</span>
+                            <span class="menu-item-price">215 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Spiced minced lamb, grilled tomato, tahini, parsley, warm bread</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 215)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lamb Chops</span>
+                            <span class="menu-item-price">385 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Grilled lamb chops, za'atar, roasted vegetables, herb rice</div>
+                        <button class="add-btn" onclick="addToCart(this, 385)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chicken Shawarma</span>
+                            <span class="menu-item-price">165 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Rotisserie chicken, garlic sauce, pickles, fries, warm pita</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 165)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Vegetable Kebab</span>
+                            <span class="menu-item-price">145 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Grilled zucchini, peppers, mushrooms, halloumi, tahini, herb rice</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 145)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="tagines" style="display:none">
+                <div class="menu-category-title">Tagines & Stews</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lamb Tagine with Prunes</span>
+                            <span class="menu-item-price">345 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Slow-cooked lamb, sweet prunes, almonds, cinnamon, honey, couscous</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 345)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chicken Tagine with Lemon</span>
+                            <span class="menu-item-price">285 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Preserved lemon, olives, saffron, ginger, couscous</div>
+                        <button class="add-btn" onclick="addToCart(this, 285)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Vegetable Tagine</span>
+                            <span class="menu-item-price">195 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Seasonal vegetables, chickpeas, apricots, almonds, couscous</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 195)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Molokhia</span>
+                            <span class="menu-item-price">165 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Egyptian jute leaf stew, garlic, coriander, chicken, rice</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 165)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Koshari</span>
+                            <span class="menu-item-price">125 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Rice, lentils, pasta, chickpeas, crispy onions, tomato sauce, garlic vinegar</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag chef">Egyptian Classic</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 125)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Fattah</span>
+                            <span class="menu-item-price">245 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Rice, crispy bread, lamb, garlic vinegar, tomato sauce, nuts</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 245)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="seafood" style="display:none">
+                <div class="menu-category-title">Seafood</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Sayadieh</span>
+                            <span class="menu-item-price">325 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Red Sea fish, caramelized onion rice, pine nuts, tahini sauce</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 325)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Grilled Prawns</span>
+                            <span class="menu-item-price">385 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Jumbo prawns, garlic butter, lemon, herbs, grilled vegetables</div>
+                        <button class="add-btn" onclick="addToCart(this, 385)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Seafood Tagine</span>
+                            <span class="menu-item-price">425 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Mixed seafood, saffron, tomatoes, peppers, cilantro, couscous</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 425)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Calamari Meshwi</span>
+                            <span class="menu-item-price">275 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Grilled calamari, garlic, lemon, olive oil, herb salad</div>
+                        <button class="add-btn" onclick="addToCart(this, 275)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Samak Harra</span>
+                            <span class="menu-item-price">295 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Spicy fish stew, tomatoes, chili, cilantro, garlic, rice</div>
+                        <div class="menu-item-tags"><span class="tag spicy">Spicy</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 295)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Sultan Ibrahim</span>
+                            <span class="menu-item-price">255 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Red mullet, deep-fried, tahini, lemon, parsley, warm bread</div>
+                        <button class="add-btn" onclick="addToCart(this, 255)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="desserts" style="display:none">
+                <div class="menu-category-title">Oriental Desserts</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Umm Ali</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Egyptian bread pudding, milk, nuts, raisins, coconut, cinnamon</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Baklava Assortment</span>
+                            <span class="menu-item-price">115 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Mixed baklava, pistachio, walnut, cashew, honey syrup</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 115)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Kunafa</span>
+                            <span class="menu-item-price">105 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Shredded pastry, sweet cheese, rose water syrup, pistachios</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 105)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Basbousa</span>
+                            <span class="menu-item-price">75 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Semolina cake, orange blossom syrup, almonds, coconut</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 75)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Rice Pudding (Roz Bel Laban)</span>
+                            <span class="menu-item-price">65 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Creamy rice pudding, vanilla, cinnamon, raisins</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 65)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Qatayef</span>
+                            <span class="menu-item-price">85 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Stuffed pancakes, cream or nuts, rose syrup, pistachios</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 85)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIQUID CRYSTAL -->
+        <section class="venue-section" id="liquid">
+            <div class="venue-header">
+                <div class="venue-type">Underwater Dining &middot; Fine Dining &middot; Exclusive</div>
+                <h2>Liquid Crystal</h2>
+                <p class="venue-desc">An extraordinary underwater dining experience beneath the waves of the Red Sea. Dine surrounded by coral reefs and marine life in our submerged glass-walled restaurant.</p>
+                <div class="venue-meta">
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        7PM - 11PM (Reservation Only)
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        55 Seats
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        International Fine Dining
+                    </div>
+                </div>
+            </div>
+
+            <div class="special-offer">
+                <div class="offer-badge">Exclusive Experience</div>
+                <h3>Underwater Tasting Menu</h3>
+                <p>A seven-course journey beneath the waves, paired with premium wines</p>
+                <div class="menu-grid" style="margin-top:1rem">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">The Ocean's Journey</span>
+                            <span class="menu-item-price">2,500 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">7-course tasting menu with wine pairing, underwater views, marine life guide</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span><span class="tag new">Exclusive</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 2500)">Reserve</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Coral Reef Experience</span>
+                            <span class="menu-item-price">1,800 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">5-course menu, champagne welcome, underwater photography session</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 1800)">Reserve</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Sunset to Sea</span>
+                            <span class="menu-item-price">1,200 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">3-course dinner, sunset cocktails, underwater night dive viewing</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 1200)">Reserve</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-tabs">
+                <button class="category-tab active" data-cat="tasting">Tasting Menu</button>
+                <button class="category-tab" data-cat="a-la-carte">A La Carte</button>
+                <button class="category-tab" data-cat="wine">Wine Pairing</button>
+            </div>
+
+            <div class="menu-category" data-cat="tasting" style="display:block">
+                <div class="menu-category-title">The Ocean's Journey — 7 Courses</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">1. Ocean Amuse-Bouche</span>
+                            <span class="menu-item-price">Included</span>
+                        </div>
+                        <div class="menu-item-desc">Oyster with yuzu pearls, seaweed crisp, champagne foam</div>
+                        <div class="menu-item-tags"><span class="tag chef">Chef's Creation</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">2. Coral Garden</span>
+                            <span class="menu-item-price">Included</span>
+                        </div>
+                        <div class="menu-item-desc">Heirloom tomato salad, edible flowers, basil oil, burrata</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">3. Deep Blue</span>
+                            <span class="menu-item-price">Included</span>
+                        </div>
+                        <div class="menu-item-desc">Bluefin tuna tartare, avocado, wasabi, caviar, gold leaf</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">4. Reef Symphony</span>
+                            <span class="menu-item-price">Included</span>
+                        </div>
+                        <div class="menu-item-desc">Lobster bisque, saffron, cognac, coral-shaped croutons</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">5. The Current</span>
+                            <span class="menu-item-price">Included</span>
+                        </div>
+                        <div class="menu-item-desc">Pan-seared scallops, cauliflower puree, black truffle, lemon butter</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">6. Abyss</span>
+                            <span class="menu-item-price">Included</span>
+                        </div>
+                        <div class="menu-item-desc">Wagyu beef tenderloin, bone marrow, red wine reduction, smoked potato</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">7. Pearl</span>
+                            <span class="menu-item-price">Included</span>
+                        </div>
+                        <div class="menu-item-desc">White chocolate sphere, passion fruit, coconut, edible pearls</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag chef">Signature</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="a-la-carte" style="display:none">
+                <div class="menu-category-title">A La Carte Selection</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Caviar Service</span>
+                            <span class="menu-item-price">1,200 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Beluga caviar, blinis, creme fraiche, chives, champagne</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 1200)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lobster Thermidor</span>
+                            <span class="menu-item-price">685 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Whole lobster, creamy mustard sauce, gruyere, herb crust</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 685)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Dover Sole Meuniere</span>
+                            <span class="menu-item-price">525 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Whole Dover sole, brown butter, lemon, capers, parsley potatoes</div>
+                        <button class="add-btn" onclick="addToCart(this, 525)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Truffle Risotto</span>
+                            <span class="menu-item-price">455 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Carnaroli rice, black truffle, parmesan, white truffle oil</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 455)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chateaubriand for Two</span>
+                            <span class="menu-item-price">1,450 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Center-cut tenderloin, bone marrow, bordelaise sauce, seasonal vegetables</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span><span class="tag popular">For Sharing</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 1450)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Souffle au Grand Marnier</span>
+                            <span class="menu-item-price">195 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Orange liqueur souffle, vanilla cream, candied orange</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 195)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="wine" style="display:none">
+                <div class="menu-category-title">Wine Pairing Selection</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Classic Pairing</span>
+                            <span class="menu-item-price">450 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">3 glasses: Champagne, white Burgundy, red Bordeaux</div>
+                        <button class="add-btn" onclick="addToCart(this, 450)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Premium Pairing</span>
+                            <span class="menu-item-price">750 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">5 glasses: Grand Cru Champagne, Premier Cru Chablis, Grand Cru Burgundy, First Growth Bordeaux, Sauternes</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 750)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Champagne Collection</span>
+                            <span class="menu-item-price">1,200 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Dom Perignon, Krug, Salon — 3 glasses of prestige champagne</div>
+                        <div class="menu-item-tags"><span class="tag chef">Luxury</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 1200)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Red Sea Collection</span>
+                            <span class="menu-item-price">650 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Lebanese wines: Chateau Musar, Ksara, Kefraya — 4 glasses</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 650)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BARS & LOUNGES -->
+        <section class="venue-section" id="bars">
+            <div class="venue-header">
+                <div class="venue-type">Cocktails &middot; Spirits &middot; Nightlife</div>
+                <h2>Bars & Lounges</h2>
+                <p class="venue-desc">From sunset cocktails by the beach to late-night DJ sessions, our bars and lounges offer the perfect atmosphere for every moment of your stay.</p>
+                <div class="venue-meta">
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        11AM - 2AM
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        Beach Bar, Pool Bar, Lobby Bar, Night Club
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        International & Local
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-tabs">
+                <button class="category-tab active" data-cat="cocktails">Signature Cocktails</button>
+                <button class="category-tab" data-cat="beach">Beach Bar</button>
+                <button class="category-tab" data-cat="pool">Pool Bar</button>
+                <button class="category-tab" data-cat="lobby">Lobby Bar</button>
+                <button class="category-tab" data-cat="night">Night Club</button>
+                <button class="category-tab" data-cat="spirits">Spirits & Wines</button>
+            </div>
+
+            <div class="menu-category" data-cat="cocktails" style="display:block">
+                <div class="menu-category-title">Signature Cocktails</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Red Sea Breeze</span>
+                            <span class="menu-item-price">185 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Gin, pomegranate, lime, rosemary, tonic, edible flower</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 185)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Coral Reef</span>
+                            <span class="menu-item-price">195 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Rum, blue curacao, coconut cream, pineapple, lime, coral garnish</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 195)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Sunset Mirage</span>
+                            <span class="menu-item-price">175 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Tequila, orange, grenadine, agave, chili salt rim</div>
+                        <div class="menu-item-tags"><span class="tag spicy">Spicy</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 175)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lumina Martini</span>
+                            <span class="menu-item-price">225 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Vodka, lychee, elderflower, lemon, gold leaf, crystal sugar</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 225)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Oasis Spritz</span>
+                            <span class="menu-item-price">155 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Aperol, prosecco, soda, orange, mint, olive</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 155)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Midnight Pearl</span>
+                            <span class="menu-item-price">245 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Champagne, violet liqueur, blackberry, lemon, pearl dust</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 245)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="beach" style="display:none">
+                <div class="menu-category-title">Beach Bar Menu</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Frozen Margarita</span>
+                            <span class="menu-item-price">165 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Tequila, triple sec, lime, frozen, salt rim</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 165)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Pina Colada</span>
+                            <span class="menu-item-price">155 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Rum, coconut cream, pineapple, cherry, umbrella</div>
+                        <button class="add-btn" onclick="addToCart(this, 155)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Mojito</span>
+                            <span class="menu-item-price">145 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">White rum, mint, lime, sugar, soda water</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 145)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Sea Breeze Punch</span>
+                            <span class="menu-item-price">225 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Rum, vodka, gin, triple sec, fruit juices, shared pitcher</div>
+                        <div class="menu-item-tags"><span class="tag chef">For Sharing</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 225)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Fresh Coconut</span>
+                            <span class="menu-item-price">85 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Young coconut, rum optional, fresh straw</div>
+                        <div class="menu-item-tags"><span class="tag veg">Non-Alcoholic</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 85)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Beach Snack Platter</span>
+                            <span class="menu-item-price">195 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Mixed nuts, olives, chips, dips, fresh fruit</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 195)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="pool" style="display:none">
+                <div class="menu-category-title">Pool Bar Menu</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Poolside Daiquiri</span>
+                            <span class="menu-item-price">155 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">White rum, lime, sugar, strawberry or mango</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 155)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Aperol Spritz</span>
+                            <span class="menu-item-price">165 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Aperol, prosecco, soda, orange slice</div>
+                        <button class="add-btn" onclick="addToCart(this, 165)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Tropical Smoothie</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Mango, pineapple, banana, coconut milk, honey</div>
+                        <div class="menu-item-tags"><span class="tag veg">Non-Alcoholic</span><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Frozen Bellini</span>
+                            <span class="menu-item-price">175 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Prosecco, peach puree, frozen, mint</div>
+                        <button class="add-btn" onclick="addToCart(this, 175)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Cucumber Cooler</span>
+                            <span class="menu-item-price">135 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Gin, cucumber, mint, lime, elderflower tonic</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 135)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Pool Float Platter</span>
+                            <span class="menu-item-price">275 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Sushi rolls, spring rolls, sliders, fruit skewers, dips</div>
+                        <div class="menu-item-tags"><span class="tag chef">For Sharing</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 275)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="lobby" style="display:none">
+                <div class="menu-category-title">Lobby Bar</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Espresso Martini</span>
+                            <span class="menu-item-price">195 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Vodka, espresso, coffee liqueur, sugar, coffee beans</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 195)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Old Fashioned</span>
+                            <span class="menu-item-price">225 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Bourbon, sugar, bitters, orange peel, cherry</div>
+                        <div class="menu-item-tags"><span class="tag chef">Classic</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 225)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Negroni</span>
+                            <span class="menu-item-price">185 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Gin, campari, sweet vermouth, orange peel</div>
+                        <button class="add-btn" onclick="addToCart(this, 185)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Whiskey Sour</span>
+                            <span class="menu-item-price">175 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Bourbon, lemon, sugar, egg white, bitters</div>
+                        <button class="add-btn" onclick="addToCart(this, 175)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Manhattan</span>
+                            <span class="menu-item-price">215 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Rye whiskey, sweet vermouth, bitters, cherry</div>
+                        <div class="menu-item-tags"><span class="tag chef">Classic</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 215)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Premium Scotch Selection</span>
+                            <span class="menu-item-price">285 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Macallan 18, Lagavulin 16, Glenfiddich 21 — per glass</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 285)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="night" style="display:none">
+                <div class="menu-category-title">Night Club & DJ Bar</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lumina Shot</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Vodka, blue curacao, lemon, sugar, glowing ice cube</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Bottle Service — Premium</span>
+                            <span class="menu-item-price">2,500 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Grey Goose or Patron, mixers, fruit platter, VIP table</div>
+                        <div class="menu-item-tags"><span class="tag chef">VIP</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 2500)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Bottle Service — Luxury</span>
+                            <span class="menu-item-price">4,500 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Dom Perignon, Cristal, or Ace of Spades, full VIP experience</div>
+                        <div class="menu-item-tags"><span class="tag chef">Luxury</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 4500)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Midnight Mule</span>
+                            <span class="menu-item-price">165 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Vodka, ginger beer, lime, copper mug, mint</div>
+                        <button class="add-btn" onclick="addToCart(this, 165)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">DJ's Special</span>
+                            <span class="menu-item-price">195 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Rum, passion fruit, vanilla, lime, sparkling wine float</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 195)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Late Night Snack Box</span>
+                            <span class="menu-item-price">145 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Mini burgers, fries, wings, dips, midnight cravings</div>
+                        <button class="add-btn" onclick="addToCart(this, 145)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="spirits" style="display:none">
+                <div class="menu-category-title">Spirits & Wine List</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Red Wine by Glass</span>
+                            <span class="menu-item-price">145 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Selection: Cabernet, Merlot, Pinot Noir, Malbec</div>
+                        <button class="add-btn" onclick="addToCart(this, 145)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">White Wine by Glass</span>
+                            <span class="menu-item-price">135 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Selection: Chardonnay, Sauvignon Blanc, Pinot Grigio, Riesling</div>
+                        <button class="add-btn" onclick="addToCart(this, 135)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Champagne by Glass</span>
+                            <span class="menu-item-price">385 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Moet & Chandon, Veuve Clicquot, Laurent Perrier</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 385)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Single Malt Whisky</span>
+                            <span class="menu-item-price">225 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Glenlivet, Glenfiddich, Macallan, Highland Park — per dram</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 225)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Cognac & Brandy</span>
+                            <span class="menu-item-price">295 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Hennessy VSOP, Remy Martin, Courvoisier, Martell</div>
+                        <button class="add-btn" onclick="addToCart(this, 295)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Local Egyptian Beer</span>
+                            <span class="menu-item-price">65 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Stella, Sakara, Heineken, Corona — ice cold</div>
+                        <button class="add-btn" onclick="addToCart(this, 65)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAFES -->
+        <section class="venue-section" id="cafes">
+            <div class="venue-header">
+                <div class="venue-type">Coffee &middot; Pastries &middot; Light Bites</div>
+                <h2>Cafes</h2>
+                <p class="venue-desc">From morning coffee to afternoon tea, our cafes offer artisanal beverages, freshly baked pastries, and light bites in relaxed, elegant settings.</p>
+                <div class="venue-meta">
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        6AM - 11PM
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        Lobby Cafe, Lounge Cafe
+                    </div>
+                    <div class="meta-item">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Artisanal & Local
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-tabs">
+                <button class="category-tab active" data-cat="coffee">Coffee</button>
+                <button class="category-tab" data-cat="tea">Tea</button>
+                <button class="category-tab" data-cat="pastries">Pastries</button>
+                <button class="category-tab" data-cat="light">Light Bites</button>
+                <button class="category-tab" data-cat="specialty">Specialty Drinks</button>
+            </div>
+
+            <div class="menu-category" data-cat="coffee" style="display:block">
+                <div class="menu-category-title">Artisanal Coffee</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Lumina Espresso</span>
+                            <span class="menu-item-price">55 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Single origin Ethiopian, rich crema, dark chocolate notes</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 55)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Cappuccino</span>
+                            <span class="menu-item-price">75 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Double espresso, steamed milk, microfoam, cocoa dust</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 75)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Flat White</span>
+                            <span class="menu-item-price">85 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Double ristretto, velvety milk, latte art</div>
+                        <button class="add-btn" onclick="addToCart(this, 85)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Turkish Coffee</span>
+                            <span class="menu-item-price">45 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Traditional preparation, cardamom, served with lokum</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 45)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Cold Brew</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">12-hour steeped, single origin, served over ice, orange peel</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Affogato</span>
+                            <span class="menu-item-price">115 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Double espresso poured over vanilla gelato, biscotti</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 115)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="tea" style="display:none">
+                <div class="menu-category-title">Tea Selection</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Egyptian Mint Tea</span>
+                            <span class="menu-item-price">45 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Fresh mint, black tea, sugar, traditional glass</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 45)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Afternoon Tea Set</span>
+                            <span class="menu-item-price">325 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Selection of teas, finger sandwiches, scones, pastries, clotted cream</div>
+                        <div class="menu-item-tags"><span class="tag chef">For Sharing</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 325)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Moroccan Tea</span>
+                            <span class="menu-item-price">65 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Green tea, fresh mint, sugar, poured from height</div>
+                        <button class="add-btn" onclick="addToCart(this, 65)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Chai Latte</span>
+                            <span class="menu-item-price">85 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Spiced black tea, steamed milk, cinnamon, cardamom, honey</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 85)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Jasmine Pearl Tea</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Hand-rolled jasmine pearls, delicate floral aroma, multiple infusions</div>
+                        <div class="menu-item-tags"><span class="tag chef">Premium</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Iced Tea Collection</span>
+                            <span class="menu-item-price">75 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Peach, lemon, passion fruit, or hibiscus — refreshing and natural</div>
+                        <button class="add-btn" onclick="addToCart(this, 75)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="pastries" style="display:none">
+                <div class="menu-category-title">Fresh Pastries</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Croissant</span>
+                            <span class="menu-item-price">55 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Butter croissant, flaky layers, golden crust — plain, almond, or chocolate</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 55)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Pain au Chocolat</span>
+                            <span class="menu-item-price">65 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Chocolate-filled pastry, buttery, flaky, rich</div>
+                        <button class="add-btn" onclick="addToCart(this, 65)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Red Sea Muffin</span>
+                            <span class="menu-item-price">75 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Blueberry and white chocolate, streusel topping, warm</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 75)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Cinnamon Roll</span>
+                            <span class="menu-item-price">85 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Swedish-style, cream cheese frosting, caramel pecans</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 85)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Eclair</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Choux pastry, vanilla cream, chocolate glaze, gold leaf</div>
+                        <div class="menu-item-tags"><span class="tag chef">Signature</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Macaron Selection</span>
+                            <span class="menu-item-price">125 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">6 assorted flavors: pistachio, rose, lavender, salted caramel, lemon, raspberry</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 125)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="light" style="display:none">
+                <div class="menu-category-title">Light Bites</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Avocado Toast</span>
+                            <span class="menu-item-price">145 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Sourdough, smashed avocado, poached egg, chili flakes, microgreens</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 145)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Smoked Salmon Bagel</span>
+                            <span class="menu-item-price">195 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Everything bagel, cream cheese, smoked salmon, capers, red onion, dill</div>
+                        <button class="add-btn" onclick="addToCart(this, 195)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Quiche Lorraine</span>
+                            <span class="menu-item-price">125 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Bacon, gruyere, caramelized onion, flaky pastry, side salad</div>
+                        <button class="add-btn" onclick="addToCart(this, 125)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Caprese Panini</span>
+                            <span class="menu-item-price">135 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Mozzarella, tomato, basil pesto, balsamic, ciabatta</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 135)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Greek Yogurt Bowl</span>
+                            <span class="menu-item-price">115 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Thick yogurt, honey, granola, fresh berries, nuts, mint</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 115)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Soup of the Day</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Chef's daily creation, fresh bread, herb butter</div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="specialty" style="display:none">
+                <div class="menu-category-title">Specialty Drinks</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Golden Latte</span>
+                            <span class="menu-item-price">115 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Turmeric, ginger, cinnamon, honey, steamed milk, black pepper</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 115)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Beetroot Latte</span>
+                            <span class="menu-item-price">105 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Beetroot powder, oat milk, vanilla, cinnamon, pink hue</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 105)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Red Sea Smoothie</span>
+                            <span class="menu-item-price">125 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Dragon fruit, mango, coconut, chia seeds, spirulina</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 125)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Fresh Juice Blends</span>
+                            <span class="menu-item-price">85 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Orange, carrot, ginger, beetroot, green detox, or custom blend</div>
+                        <div class="menu-item-tags"><span class="tag veg">Vegetarian</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 85)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Hot Chocolate</span>
+                            <span class="menu-item-price">95 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Belgian chocolate, steamed milk, whipped cream, marshmallows</div>
+                        <div class="menu-item-tags"><span class="tag popular">Popular</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 95)">Add to Order</button>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Bubble Tea</span>
+                            <span class="menu-item-price">115 <span>EGP</span></span>
+                        </div>
+                        <div class="menu-item-desc">Milk tea, tapioca pearls, brown sugar, various flavors</div>
+                        <div class="menu-item-tags"><span class="tag new">New</span></div>
+                        <button class="add-btn" onclick="addToCart(this, 115)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="cart-summary" id="cartSummary">
+        <h4>Your Order</h4>
+        <div class="cart-count"><span id="cartCount">0</span> items</div>
+        <div style="color:var(--gold); font-size:1.2rem; font-weight:700; margin-top:0.3rem"><span id="cartTotal">0</span> EGP</div>
+    </div>
+
+    <div class="scroll-indicator" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+    </div>
+
+    <footer class="footer">
+        <div class="brand">Lumina Red Sea Resort</div>
+        <p>One Sea, One Soul, One Family</p>
+        <p style="margin-top:0.5rem; font-size:0.75rem;">All prices in EGP. Service charge and taxes may apply. Menu items subject to availability.</p>
+    </footer>
+
+    <script>
+
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (5 + Math.random() * 5) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Venue switching
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const venueSections = document.querySelectorAll('.venue-section');
+
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const venue = tab.dataset.venue;
+
+                navTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                venueSections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === venue) {
+                        section.classList.add('active');
+                    }
+                });
+
+                // Reset category tabs for the new venue
+                const activeSection = document.getElementById(venue);
+                const catTabs = activeSection.querySelectorAll('.category-tab');
+                const catContents = activeSection.querySelectorAll('.menu-category');
+
+                catTabs.forEach((t, i) => {
+                    t.classList.toggle('active', i === 0);
+                });
+                catContents.forEach((c, i) => {
+                    c.style.display = i === 0 ? 'block' : 'none';
+                });
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Category switching within venues
+        document.querySelectorAll('.venue-section').forEach(section => {
+            const catTabs = section.querySelectorAll('.category-tab');
+            const catContents = section.querySelectorAll('.menu-category');
+
+            catTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const cat = tab.dataset.cat;
+
+                    catTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    catContents.forEach(content => {
+                        content.style.display = content.dataset.cat === cat ? 'block' : 'none';
+                    });
+                });
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const activeSection = document.querySelector('.venue-section.active');
+            const menuItems = activeSection.querySelectorAll('.menu-item');
+
+            menuItems.forEach(item => {
+                const name = item.querySelector('.menu-item-name').textContent.toLowerCase();
+                const desc = item.querySelector('.menu-item-desc').textContent.toLowerCase();
+                const price = item.querySelector('.menu-item-price').textContent.toLowerCase();
+
+                if (name.includes(query) || desc.includes(query) || price.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Cart functionality
+        let cart = [];
+        const cartSummary = document.getElementById('cartSummary');
+        const cartCountEl = document.getElementById('cartCount');
+        const cartTotalEl = document.getElementById('cartTotal');
+
+        function addToCart(btn, price) {
+            const item = btn.closest('.menu-item');
+            const name = item.querySelector('.menu-item-name').textContent;
+
+            cart.push({ name, price });
+            updateCart();
+
+            btn.textContent = 'Added!';
+            btn.classList.add('added');
+            setTimeout(() => {
+                btn.textContent = 'Add to Order';
+                btn.classList.remove('added');
+            }, 1500);
+        }
+
+        function updateCart() {
+            const count = cart.length;
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+            cartCountEl.textContent = count;
+            cartTotalEl.textContent = total.toLocaleString();
+
+            if (count > 0) {
+                cartSummary.classList.add('show');
+            } else {
+                cartSummary.classList.remove('show');
+            }
+        }
+
+        // Scroll indicator visibility
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollIndicator.style.opacity = '1';
+                scrollIndicator.style.pointerEvents = 'auto';
+            } else {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.pointerEvents = 'none';
+            }
+        });
+        scrollIndicator.style.opacity = '0';
+        scrollIndicator.style.pointerEvents = 'none';
+
+        // Add hover glow effect to menu items
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.borderColor = 'var(--cyan)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.borderColor = '';
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+            }
+        });
+    </script>
+</body>
+</html>
